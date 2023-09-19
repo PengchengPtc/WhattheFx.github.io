@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="TypeORM基础篇, WhattheFx">
+    <meta name="keywords" content="如何实现关键词标红？, WhattheFx">
     <meta name="description" content="I see you">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>TypeORM基础篇 | WhattheFx</title>
+    <title>如何实现关键词标红？ | WhattheFx</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -313,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">TypeORM基础篇</h1>
+                    <h1 class="description center-align post-title">如何实现关键词标红？</h1>
                 </div>
             </div>
         </div>
@@ -434,8 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/TypeORM/">
-                                <span class="chip bg-color">TypeORM</span>
+                            <a href="/tags/react/">
+                                <span class="chip bg-color">react</span>
                             </a>
                         
                     </div>
@@ -446,8 +446,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/TypeORM/" class="post-category">
-                                TypeORM
+                            <a href="/categories/react/" class="post-category">
+                                react
                             </a>
                         
                     </div>
@@ -459,21 +459,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-09-13
+                    2023-09-19
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-09-13
+                    2023-09-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    785
+                    938
                 </div>
                 
 
@@ -500,178 +500,69 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="typeOrm"><a href="#typeOrm" class="headerlink" title="typeOrm"></a>typeOrm</h1><h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><pre class="line-numbers language-bash"><code class="language-bash">yarn global add typeorm
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="2-初始化"><a href="#2-初始化" class="headerlink" title="2.初始化"></a>2.初始化</h2><pre class="line-numbers language-bash"><code class="language-bash">typeorm init
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="3-目录结构"><a href="#3-目录结构" class="headerlink" title="3.目录结构"></a>3.目录结构</h2><p><img src="https://whatthfx11.oss-cn-beijing.aliyuncs.com/blog/image_480.png"></p>
-<h2 id="4-创建实体"><a href="#4-创建实体" class="headerlink" title="4.创建实体"></a>4.创建实体</h2><blockquote>
-<p>一个实体就是数据库的一个表格</p>
+                <h1 id="如何实现关键词标红？"><a href="#如何实现关键词标红？" class="headerlink" title="如何实现关键词标红？"></a>如何实现关键词标红？</h1><h2 id="1-场景"><a href="#1-场景" class="headerlink" title="1.场景"></a>1.场景</h2><p>​    上节讲到，搜索相关功能的实现，这一节需要实现搜索的关键词在搜索出的内容里面标红，就是突出显示，需求量也很多。</p>
+<p><img src="https://whatthfx11.oss-cn-beijing.aliyuncs.com/blog/image_720-1.png"></p>
+<p><img src="https://whatthfx11.oss-cn-beijing.aliyuncs.com/blog/image_720-2.png"></p>
+<h2 id="2-实现"><a href="#2-实现" class="headerlink" title="2.实现"></a>2.实现</h2><pre class="line-numbers language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>
+                <span class="token entity" title="&#123;">&amp;#123;</span>item.content
+                  .split(new RegExp(`($<span class="token entity" title="&#123;">&amp;#123;</span>keywordArray.join('|')<span class="token entity" title="&#125;">&amp;#125;</span>)`, 'gi'))
+                  .map((part, index) =>
+                    ((matchedKeyword) =>
+                      matchedKeyword ? (
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StyledSpan</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;index&amp;#125;</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>part<span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StyledSpan</span><span class="token punctuation">></span></span>
+                      ) : (
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;index&amp;#125;</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>part<span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+                      ))(
+                      keywordArray.find((keyword) => part.toLowerCase() === keyword.toLowerCase())
+                    )
+                  )<span class="token entity" title="&#125;">&amp;#125;</span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>看以上代码,现逐一解释</p>
 </blockquote>
-<h3 id="1-User实体"><a href="#1-User实体" class="headerlink" title="1.User实体"></a>1.User实体</h3><p>​    User.ts:</p>
-<pre class="line-numbers language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">"os"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> Entity<span class="token punctuation">,</span> OneToMany <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> Column <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">"typeorm/decorator/columns/Column"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> PrimaryGeneratedColumn <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">"typeorm/decorator/columns/PrimaryGeneratedColumn"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> Comment <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">"./Comment"</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">// Entity标记usr类是一个实体</span>
-@<span class="token function">Entity</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-    @<span class="token function">PrimaryGeneratedColumn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 主键且自增</span>
-    id<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">;</span>
-
-    @<span class="token function">Column</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 普通属性</span>
-    nick<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
-
-    @<span class="token function">Column</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    salary<span class="token punctuation">:</span> <span class="token keyword">number</span><span class="token punctuation">;</span>
-
-
-    <span class="token comment" spellcheck="true">// 一个用户对应多个评论，反向的话，要定义多个类型</span>
-    @<span class="token function">OneToMany</span><span class="token punctuation">(</span>type <span class="token operator">=</span><span class="token operator">></span> Comment<span class="token punctuation">,</span> comment <span class="token operator">=</span><span class="token operator">></span> comment<span class="token punctuation">.</span>user<span class="token punctuation">)</span>
-    comments<span class="token punctuation">:</span> Comment<span class="token punctuation">[</span><span class="token punctuation">]</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="2-Comment实体"><a href="#2-Comment实体" class="headerlink" title="2.Comment实体"></a>2.Comment实体</h3><p>​    Comment.ts:</p>
-<pre class="line-numbers language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> type <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">"os"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> Column<span class="token punctuation">,</span> Entity<span class="token punctuation">,</span> JoinColumn<span class="token punctuation">,</span> ManyToOne<span class="token punctuation">,</span> PrimaryGeneratedColumn <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">"typeorm"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> User <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">"./User"</span><span class="token punctuation">;</span>
-
-
-@<span class="token function">Entity</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Comment</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-    @<span class="token function">PrimaryGeneratedColumn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    id<span class="token punctuation">:</span><span class="token keyword">number</span><span class="token punctuation">;</span>
-
-    @<span class="token function">Column</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-    content<span class="token punctuation">:</span> <span class="token keyword">string</span><span class="token punctuation">;</span>
-
-    @<span class="token function">ManyToOne</span><span class="token punctuation">(</span>type <span class="token operator">=</span><span class="token operator">></span> User<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 多条评论对应一个用户</span>
-    @<span class="token function">JoinColumn</span><span class="token punctuation">(</span><span class="token punctuation">)</span>            <span class="token comment" spellcheck="true">// 连接字段，而非普通字段   </span>
-    user<span class="token punctuation">:</span>User
-
-
-
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="5-连接数据库"><a href="#5-连接数据库" class="headerlink" title="5.连接数据库"></a>5.连接数据库</h2><p>​    index.ts</p>
-<pre class="line-numbers language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token string">'reflect-metadata'</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> createConnection<span class="token punctuation">,</span> Like<span class="token punctuation">,</span> MoreThanOrEqual <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">'typeorm'</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> User <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">'./entity/User'</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>Comment<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>  <span class="token keyword">from</span> <span class="token string">'./entity/Comment'</span>
-<span class="token keyword">import</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> log <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">from</span> <span class="token string">'console'</span>
-
-
-<span class="token comment" spellcheck="true">// createConnection对象返回一个promise</span>
-<span class="token function">createConnection</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    type<span class="token punctuation">:</span> <span class="token string">'mysql'</span><span class="token punctuation">,</span>
-    host<span class="token punctuation">:</span> <span class="token string">'localhost'</span><span class="token punctuation">,</span>
-    port<span class="token punctuation">:</span> <span class="token number">3306</span><span class="token punctuation">,</span>
-    username<span class="token punctuation">:</span> <span class="token string">'root'</span><span class="token punctuation">,</span>
-    password<span class="token punctuation">:</span> <span class="token string">'123456'</span><span class="token punctuation">,</span>
-    database<span class="token punctuation">:</span> <span class="token string">'gzptcxqd'</span><span class="token punctuation">,</span>
-    entities<span class="token punctuation">:</span> <span class="token punctuation">[</span>
-        __dirname <span class="token operator">+</span> <span class="token string">'/entity/*.ts'</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
-    synchronize<span class="token punctuation">:</span> <span class="token keyword">true</span> <span class="token comment" spellcheck="true">// 同步，开发环境可以用</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>async <span class="token punctuation">(</span>connection<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">const</span> UserRepository <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">getRepository</span><span class="token punctuation">(</span>User<span class="token punctuation">)</span>
-    <span class="token keyword">const</span> commentRespository <span class="token operator">=</span> connection<span class="token punctuation">.</span><span class="token function">getRepository</span><span class="token punctuation">(</span>Comment<span class="token punctuation">)</span>
-
-    <span class="token comment" spellcheck="true">// 取到用户和用户发表的所有评论</span>
-    <span class="token keyword">const</span> users <span class="token operator">=</span> await UserRepository<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-        relations<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token string">'comments'</span><span class="token punctuation">]</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>users<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    
-
-    connection<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="6-增删改查操作"><a href="#6-增删改查操作" class="headerlink" title="6.增删改查操作"></a>6.增删改查操作</h2><pre class="line-numbers language-ts"><code class="language-ts">    <span class="token comment" spellcheck="true">// 增</span>
-    <span class="token comment" spellcheck="true">// const User1 = new User()</span>
-    <span class="token comment" spellcheck="true">// User1.nick = '柯南'</span>
-    <span class="token comment" spellcheck="true">// User1.salary = 50000</span>
-
-    <span class="token comment" spellcheck="true">// await UserRepository.save(User1)</span>
-
-    <span class="token comment" spellcheck="true">// 查，()内加筛选条件，接空就是查询所有</span>
-    <span class="token comment" spellcheck="true">// const users = await UserRepository.find()</span>
-    <span class="token comment" spellcheck="true">// console.log(users)</span>
-
-    <span class="token comment" spellcheck="true">// 查，要求同时满足</span>
-    <span class="token comment" spellcheck="true">// const users = await UserRepository.find(&amp;#123;</span>
-    <span class="token comment" spellcheck="true">//     where: &amp;#123;</span>
-    <span class="token comment" spellcheck="true">//         salary: MoreThanOrEqual(50000),</span>
-    <span class="token comment" spellcheck="true">//         nick: '小红',</span>
-    <span class="token comment" spellcheck="true">//       &amp;#125;,</span>
-    <span class="token comment" spellcheck="true">// &amp;#125;)</span>
-    <span class="token comment" spellcheck="true">// console.log(users);</span>
-    
-    <span class="token comment" spellcheck="true">// 查，要求满足一个就会被选出来</span>
-    <span class="token comment" spellcheck="true">// const users = await UserRepository.find(&amp;#123;</span>
-    <span class="token comment" spellcheck="true">//     where: [</span>
-    <span class="token comment" spellcheck="true">//         &amp;#123;</span>
-    <span class="token comment" spellcheck="true">//             salary:MoreThanOrEqual(50000)</span>
-    <span class="token comment" spellcheck="true">//         &amp;#125;,</span>
-    <span class="token comment" spellcheck="true">//         &amp;#123;</span>
-    <span class="token comment" spellcheck="true">//             nick:'张三'</span>
-    <span class="token comment" spellcheck="true">//         &amp;#125;,</span>
-    <span class="token comment" spellcheck="true">//         &amp;#123;</span>
-    <span class="token comment" spellcheck="true">//             nick:'小红啊'</span>
-    <span class="token comment" spellcheck="true">//         &amp;#125;</span>
-    <span class="token comment" spellcheck="true">//     ]</span>
-    <span class="token comment" spellcheck="true">// &amp;#125;)</span>
-    <span class="token comment" spellcheck="true">// console.log(users);</span>
-
-    <span class="token comment" spellcheck="true">// 模糊搜索</span>
-    <span class="token comment" spellcheck="true">// const users = await UserRepository.find(&amp;#123;</span>
-    <span class="token comment" spellcheck="true">//     // 小%是小后模糊搜索，就是第一个字为小</span>
-    <span class="token comment" spellcheck="true">//     // %小%是前后模糊搜索，就是只要包含小就ok</span>
-    <span class="token comment" spellcheck="true">//     where: &amp;#123;</span>
-    <span class="token comment" spellcheck="true">//         nick: Like('%小%'),</span>
-    <span class="token comment" spellcheck="true">//     &amp;#125;,</span>
-    <span class="token comment" spellcheck="true">//     skip:0, // 跳过0，就是第一页，take就是两个，两个属性的作用就是第一页的3个用户</span>
-    <span class="token comment" spellcheck="true">//     // 倒序排列，就是从大到小排</span>
-    <span class="token comment" spellcheck="true">//     order: &amp;#123;</span>
-    <span class="token comment" spellcheck="true">//         salary:'DESC',</span>
-    <span class="token comment" spellcheck="true">//         id:'ASC' // 如果薪水一样的话，就从id从小到大排</span>
-    <span class="token comment" spellcheck="true">//     &amp;#125;,</span>
-    <span class="token comment" spellcheck="true">//     take:3</span>
-    <span class="token comment" spellcheck="true">// &amp;#125;)</span>
-    <span class="token comment" spellcheck="true">// console.log(users);</span>
-
-    <span class="token comment" spellcheck="true">// 找一个</span>
-    <span class="token comment" spellcheck="true">// const user = await UserRepository.findOne(&amp;#123; where: &amp;#123; id: 3 &amp;#125; &amp;#125;);</span>
-
-    <span class="token comment" spellcheck="true">// 找一个并且修改</span>
-    <span class="token comment" spellcheck="true">// const user = await UserRepository.findOne(&amp;#123; where: &amp;#123; nick:'小明' &amp;#125; &amp;#125;);</span>
-    <span class="token comment" spellcheck="true">// user.salary = 9999</span>
-    <span class="token comment" spellcheck="true">// await UserRepository.save(user)</span>
-
-    <span class="token comment" spellcheck="true">// 找到一个并删除</span>
-    <span class="token comment" spellcheck="true">// const user = await UserRepository.findOne(&amp;#123; where: &amp;#123; nick:'张三' &amp;#125; &amp;#125;);</span>
-    <span class="token comment" spellcheck="true">// await UserRepository.remove(user)</span>
-    
-    <span class="token comment" spellcheck="true">// 取所有评论</span>
-    <span class="token comment" spellcheck="true">// const comments = await commentRespository.find()</span>
-    <span class="token comment" spellcheck="true">// console.log(comments);</span>
-    
-    <span class="token comment" spellcheck="true">// 取到评论的用户，就可以把对应的用户的信息取出来</span>
-    <span class="token comment" spellcheck="true">// const comments = await commentRespository.find(&amp;#123;</span>
-    <span class="token comment" spellcheck="true">//     relations:['user']</span>
-    <span class="token comment" spellcheck="true">// &amp;#125;)</span>
-    <span class="token comment" spellcheck="true">// console.log(comments);</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="7-启动项目"><a href="#7-启动项目" class="headerlink" title="7.启动项目"></a>7.启动项目</h2><pre class="line-numbers language-bash"><code class="language-bash">yarn start
+<pre class="line-numbers language-ts"><code class="language-ts"><span class="token comment" spellcheck="true">// item.content是筛选出来的内容</span>
+<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>item<span class="token punctuation">.</span>content
+    <span class="token comment" spellcheck="true">// 使用正则表达式将内容字符串拆分为一组部分，以匹配关键字数组</span>
+    <span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`($&amp;#123;keywordArray.join('|')&amp;#125;)`</span></span><span class="token punctuation">,</span> <span class="token string">'gi'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//根据传递给它的正则表达式模式进行分割。在这个上下文中，它将会根据正则表达式模式 "关键字1|关键字2|关键字3" 来拆分 item.content 这个字符串，并返回一个包含拆分后的子字符串的数组。</span>
+    <span class="token comment" spellcheck="true">// 对每个拆分的部分进行映射</span>
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>part<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+      <span class="token punctuation">(</span><span class="token punctuation">(</span>matchedKeyword<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+        matchedKeyword <span class="token operator">?</span> <span class="token punctuation">(</span> <span class="token comment" spellcheck="true">// 如果部分匹配了关键字</span>
+          <span class="token operator">&lt;</span>StyledSpan key<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>index<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>part<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>StyledSpan<span class="token operator">></span> <span class="token comment" spellcheck="true">// 使用StyledSpan包装</span>
+        <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+          <span class="token operator">&lt;</span>span key<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>index<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>part<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span> <span class="token comment" spellcheck="true">// 否则使用普通的&lt;span>标签包装</span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span>
+        keywordArray<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>keyword<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> part<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> keyword<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 查找匹配的关键字</span>
+      <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span><span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-ts"><code class="language-ts"> <span class="token keyword">const</span> keywordArray <span class="token operator">=</span> keywords<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">';'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>keyword<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> keyword<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="8-数据库表"><a href="#8-数据库表" class="headerlink" title="8.数据库表"></a>8.数据库表</h2><p><img src="https://whatthfx11.oss-cn-beijing.aliyuncs.com/blog/13d2cdaa562ca88117905d93c8f98e4_480.png"></p>
-<p><img src="https://whatthfx11.oss-cn-beijing.aliyuncs.com/blog/fa62c308cad39a12474052714bf2781_720.png"></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>​    以上属于基础部分，表关系只列举了OneToMany和ManyToOne，其他的可以参照官网看：<a target="_blank" rel="noopener" href="https://typeorm.bootcss.com/entities">https://typeorm.bootcss.com/entities</a></p>
+<p>因为关键词的格式是”xxxx;xxxxx;xxxxxx”,所以提前对keywords进行处理，split(‘;’)是根据“;”进行分割，map是遍历后去除多余的空格，keyword其实就是遍历后的每一项。</p>
+<p><code>keywordArray.join(&#39;|&#39;)</code> 是将数组 <code>keywordArray</code> 中的元素用竖线符号 <code>|</code> 连接起来的操作。这种操作通常用于创建一个正则表达式的模式，其中多个关键字将用竖线分隔，以匹配其中任何一个关键字。</p>
+<p><code>((matchedKeyword) =&gt; ...)</code>：这是一个内部的函数，它接受一个参数 <code>matchedKeyword</code>，表示当前部分是否与关键字匹配。</p>
+</blockquote>
+<h2 id="3-解释"><a href="#3-解释" class="headerlink" title="3.解释"></a>3.解释</h2><p>在这段代码中，存在一个回调函数内部的自执行函数，并且这个自执行函数的参数是由 <code>keywordArray.find(...)</code> 返回的值，即 <code>matchedKeyword</code>。让我详细解释一下它的工作原理：</p>
+<pre><code>jsxCopy code
+((matchedKeyword) =&gt;
+  matchedKeyword ? (
+    &lt;StyledSpan key=&#123;index&#125;&gt;&#123;part&#125;&lt;/StyledSpan&gt;
+  ) : (
+    &lt;span key=&#123;index&#125;&gt;&#123;part&#125;&lt;/span&gt;
+  ))(
+  keywordArray.find((keyword) =&gt; part.toLowerCase() === keyword.toLowerCase()) // 查找匹配的关键字
+)
+</code></pre>
+<p>这部分代码的执行流程如下：</p>
+<ol>
+<li><code>keywordArray.find((keyword) =&gt; part.toLowerCase() === keyword.toLowerCase())</code>：这是一个在 <code>keywordArray</code> 数组中查找匹配关键字的操作。它会根据当前的 <code>part</code>（拆分后的部分）在数组中进行查找，如果找到匹配的关键字，则返回该关键字；否则返回 <code>undefined</code>。</li>
+<li>外部的自执行函数 <code>((matchedKeyword) =&gt; ...)</code> 接收上述查找操作的结果作为参数，即 <code>matchedKeyword</code>。如果 <code>matchedKeyword</code> 存在，说明当前部分与某个关键字匹配，它将返回 <code>&lt;StyledSpan&gt;</code> 标签包装的内容，否则返回普通的 <code>&lt;span&gt;</code> 标签包装的内容。</li>
+</ol>
+<p>这个自执行函数实际上是在每次迭代中判断当前部分是否与关键字匹配，并根据匹配情况生成相应的 JSX 元素。这种嵌套的方式可以根据匹配情况动态地生成不同的界面元素，用于高亮显示匹配的关键字。</p>
+<p><strong>keywordArray.find((keyword) =&gt; part.toLowerCase() === keyword.toLowerCase())它会在 <code>keywordArray</code> 数组中查找与 <code>part</code> 在不区分大小写的情况下内容相等的关键字。</strong></p>
+<h2 id="4-小结"><a href="#4-小结" class="headerlink" title="4.小结"></a>4.小结</h2><p>​    此节，有些代码逻辑得理清，主要还是应用正则去匹配。</p>
 
                 
             </div>
@@ -698,7 +589,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://farted.cn/2023/09/13/typeorm-ji-chu-pian/">http://farted.cn/2023/09/13/typeorm-ji-chu-pian/</a>
+                    <a href="http://farted.cn/2023/09/19/ru-he-shi-xian-guan-jian-ci-biao-hong/">http://farted.cn/2023/09/19/ru-he-shi-xian-guan-jian-ci-biao-hong/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -736,8 +627,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/TypeORM/">
-                                    <span class="chip bg-color">TypeORM</span>
+                                <a href="/tags/react/">
+                                    <span class="chip bg-color">react</span>
                                 </a>
                             
                         </div>
@@ -1177,13 +1068,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2023/09/13/typeorm-ji-chu-pian/">
+                <a href="/2023/09/19/ru-he-shi-xian-guan-jian-ci-biao-hong/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="TypeORM基础篇">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="如何实现关键词标红？">
                         
-                        <span class="card-title">TypeORM基础篇</span>
+                        <span class="card-title">如何实现关键词标红？</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1194,14 +1085,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/TypeORM/" class="post-category">
-                                    TypeORM
+                            <a href="/categories/react/" class="post-category">
+                                    react
                                 </a>
                             
                             
@@ -1212,8 +1103,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/TypeORM/">
-                        <span class="chip bg-color">TypeORM</span>
+                    <a href="/tags/react/">
+                        <span class="chip bg-color">react</span>
                     </a>
                     
                 </div>
@@ -1227,13 +1118,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/03/07/cuo-wu-chu-li/">
+                <a href="/2023/09/19/yi-ge-sou-suo-li-shi-de-shu-zu-dai-ma-shi-xian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="错误处理">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="一个搜索历史的数组代码实现">
                         
-                        <span class="card-title">错误处理</span>
+                        <span class="card-title">一个搜索历史的数组代码实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1244,14 +1135,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/express/" class="post-category">
-                                    express
+                            <a href="/categories/ts/" class="post-category">
+                                    ts
                                 </a>
                             
                             
@@ -1261,8 +1152,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/express/">
-                        <span class="chip bg-color">express</span>
+                    <a href="/tags/ts/">
+                        <span class="chip bg-color">ts</span>
                     </a>
                     
                 </div>
@@ -1465,7 +1356,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">81.4k</span>&nbsp;字
+                class="white-color">82.2k</span>&nbsp;字
             
             
             
