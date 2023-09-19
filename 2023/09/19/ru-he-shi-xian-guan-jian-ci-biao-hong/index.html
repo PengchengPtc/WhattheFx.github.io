@@ -473,7 +473,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    938
+                    906
                 </div>
                 
 
@@ -503,20 +503,20 @@
                 <h1 id="如何实现关键词标红？"><a href="#如何实现关键词标红？" class="headerlink" title="如何实现关键词标红？"></a>如何实现关键词标红？</h1><h2 id="1-场景"><a href="#1-场景" class="headerlink" title="1.场景"></a>1.场景</h2><p>​    上节讲到，搜索相关功能的实现，这一节需要实现搜索的关键词在搜索出的内容里面标红，就是突出显示，需求量也很多。</p>
 <p><img src="https://whatthfx11.oss-cn-beijing.aliyuncs.com/blog/image_720-1.png"></p>
 <p><img src="https://whatthfx11.oss-cn-beijing.aliyuncs.com/blog/image_720-2.png"></p>
-<h2 id="2-实现"><a href="#2-实现" class="headerlink" title="2.实现"></a>2.实现</h2><pre class="line-numbers language-html"><code class="language-html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>
-                <span class="token entity" title="&#123;">&amp;#123;</span>item.content
-                  .split(new RegExp(`($<span class="token entity" title="&#123;">&amp;#123;</span>keywordArray.join('|')<span class="token entity" title="&#125;">&amp;#125;</span>)`, 'gi'))
+<h2 id="2-实现"><a href="#2-实现" class="headerlink" title="2.实现"></a>2.实现</h2><pre class="line-numbers language-tsx"><code class="language-tsx"> <span>
+                &#123;item.content
+                  .split(new RegExp(`($&#123;keywordArray.join('|')&#125;)`, 'gi'))
                   .map((part, index) =>
                     ((matchedKeyword) =>
                       matchedKeyword ? (
-                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StyledSpan</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;index&amp;#125;</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>part<span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StyledSpan</span><span class="token punctuation">></span></span>
+                        <StyledSpan key=&#123;index&#125;>&#123;part&#125;</StyledSpan>
                       ) : (
-                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span>&amp;#123;index&amp;#125;</span><span class="token punctuation">></span></span><span class="token entity" title="&#123;">&amp;#123;</span>part<span class="token entity" title="&#125;">&amp;#125;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+                        <span key=&#123;index&#125;>&#123;part&#125;</span>
                       ))(
                       keywordArray.find((keyword) => part.toLowerCase() === keyword.toLowerCase())
                     )
-                  )<span class="token entity" title="&#125;">&amp;#125;</span>
-              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+                  )&#125;
+              </span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>看以上代码,现逐一解释</p>
@@ -545,16 +545,15 @@
 <p><code>((matchedKeyword) =&gt; ...)</code>：这是一个内部的函数，它接受一个参数 <code>matchedKeyword</code>，表示当前部分是否与关键字匹配。</p>
 </blockquote>
 <h2 id="3-解释"><a href="#3-解释" class="headerlink" title="3.解释"></a>3.解释</h2><p>在这段代码中，存在一个回调函数内部的自执行函数，并且这个自执行函数的参数是由 <code>keywordArray.find(...)</code> 返回的值，即 <code>matchedKeyword</code>。让我详细解释一下它的工作原理：</p>
-<pre><code>jsxCopy code
-((matchedKeyword) =&gt;
-  matchedKeyword ? (
-    &lt;StyledSpan key=&#123;index&#125;&gt;&#123;part&#125;&lt;/StyledSpan&gt;
-  ) : (
-    &lt;span key=&#123;index&#125;&gt;&#123;part&#125;&lt;/span&gt;
-  ))(
-  keywordArray.find((keyword) =&gt; part.toLowerCase() === keyword.toLowerCase()) // 查找匹配的关键字
-)
-</code></pre>
+<pre class="line-numbers language-ts"><code class="language-ts"><span class="token punctuation">(</span><span class="token punctuation">(</span>matchedKeyword<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span>
+  matchedKeyword <span class="token operator">?</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>StyledSpan key<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>index<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>part<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>StyledSpan<span class="token operator">></span>
+  <span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>span key<span class="token operator">=</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>index<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">></span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>part<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span>
+  <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">(</span>
+  keywordArray<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token punctuation">(</span>keyword<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> part<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> keyword<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 查找匹配的关键字</span>
+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这部分代码的执行流程如下：</p>
 <ol>
 <li><code>keywordArray.find((keyword) =&gt; part.toLowerCase() === keyword.toLowerCase())</code>：这是一个在 <code>keywordArray</code> 数组中查找匹配关键字的操作。它会根据当前的 <code>part</code>（拆分后的部分）在数组中进行查找，如果找到匹配的关键字，则返回该关键字；否则返回 <code>undefined</code>。</li>
